@@ -1,0 +1,41 @@
+.nasaDiv {
+  margin: 20;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  /* padding:300px; */
+  padding-inline: 30%;
+}
+
+.nasaExplanation {
+  color: #506ED1;
+  text-align: left;
+  padding: 0,1000px,200,0;
+}
+
+.nasaImage {
+  /* border: 1px solid #fff000; */
+  border: 1px solid darkcyan;
+  width: 500px;
+  height: 500px;
+  fill: darkcyan;
+  /* justify-content: center;
+   */
+}
+.credit {
+  color: #73B4F1;
+  font-style: italic;
+}
+
+.title{
+  color: #3A3C6E;
+}
+
+.date{
+  color: #506ED1;
+}
