@@ -1,3 +1,6 @@
+.datePicker {
+  justify-content: center;
+}
 .nasaDiv {
   margin: 20;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -15,7 +18,6 @@
 .nasaExplanation {
   color: #506ED1;
   text-align: left;
-  padding: 0,1000px,200,0;
 }
 
 .nasaImage {

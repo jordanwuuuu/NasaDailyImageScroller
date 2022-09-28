@@ -1,21 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import App from './App';
 import { FetchApi } from "./App";
-
-import reportWebVitals from "./reportWebVitals";
+import { DatePicker } from "./DatePicker";
+import { useState } from "react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const apiKey = "hw7MfiEOLhCthoY1oTX57XvgA61SUbFUEoejOerA";
 
+function NasaMediaObject() {
+  const [dateValue, setDateValue] = useState("");
+  return (
+    <div>
+      <DatePicker setDateValue={setDateValue} />
+      <FetchApi apiKey={apiKey} dateValue={dateValue} />
+    </div>
+  );
+}
+
 root.render(
   <React.StrictMode>
-    <FetchApi apiKey={apiKey} />
+    <NasaMediaObject />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

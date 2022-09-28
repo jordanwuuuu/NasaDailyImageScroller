@@ -1,30 +1,20 @@
-import "./App.css";
 import React from "react";
 import { useState, useEffect } from "react";
 
-export function FetchApi({ apiKey }) {
+export function FetchApi({ apiKey, dateValue }) {
   const initialState = {};
-  const [state, setState] = useState(initialState);
-  const [dateValue, setDateValue] = useState("");
-  let dateElement = document.querySelector(".datePicker");
-  console.log("dateValue:", dateValue);
-
-  const handleChange = (event) => {
-    console.log("Date:", dateValue);
-    setDateValue(event.target.value);
-  };
+  const [responseState, setResponseState] = useState(initialState);
 
   useEffect(() => {
     if (dateValue === undefined || dateValue === null || dateValue === "") {
       fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
         .then((res) => res.json())
         .then((result) => {
-          setState(result);
+          setResponseState(result);
         })
         .catch((error) =>
           console.log("Failed to make request to Nasa API:", error)
         );
-      console.log("Did not find date, using todays date ");
     } else {
       console.log(`Date value found:${dateValue}`);
       fetch(
@@ -32,31 +22,38 @@ export function FetchApi({ apiKey }) {
       )
         .then((res) => res.json())
         .then((result) => {
-          setState(result);
+          setResponseState(result);
         })
         .catch((error) =>
           console.log("Failed to make request to Nasa API:", error)
         );
     }
-  }, [apiKey, dateElement, dateValue]);
+  }, [apiKey, dateValue]);
 
   return (
     <div className="nasaDiv">
       <div className="imageInfo">
-        <input
-          value
-          type="date"
-          className="datePicker"
-          onChange={handleChange}
-          max={"2022-08-09"}
-        ></input>
-        <h1 className="title">{state.title}</h1>
-        <h3 className="date"> {state.date}</h3>
-        <img src={state.url} className="nasaImage" alt="img"></img>
+        <h1 className="title">{responseState.title}</h1>
+        <h3 className="date"> {responseState.date}</h3>
+        {responseState.url && responseState.url.includes("youtube") ? (
+          <iframe
+            title="youtube"
+            className="nasaVideo"
+            alt="img"
+            width="420"
+            height="315"
+            src={responseState.url}
+          />
+        ) : (
+          <img src={responseState.url} className="nasaImage" alt="img"></img>
+        )}
+
         <h3 className="credit">
-          {state.copyright !== undefined ? `Copyright:${state.copyright}` : ""}
+          {responseState.copyright !== undefined
+            ? `Copyright:${responseState.copyright}`
+            : ""}
         </h3>
-        <p className="nasaExplanation"> {state.explanation}</p>
+        <p className="nasaExplanation"> {responseState.explanation}</p>
       </div>
     </div>
   );
