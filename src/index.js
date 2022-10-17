@@ -14,6 +14,8 @@ function NasaMediaObject() {
     <div>
       <DatePicker setDateValue={setDateValue} />
       <FetchApi apiKey={apiKey} dateValue={dateValue} />
+      <FetchApi apiKey={apiKey} dateValue='1997-12-25' />
+      <FetchApi apiKey={apiKey} dateValue='1996-01-21' />
     </div>
   );
 }

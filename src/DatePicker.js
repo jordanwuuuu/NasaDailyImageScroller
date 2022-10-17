@@ -13,13 +13,15 @@ export function DatePicker({ setDateValue }) {
   };
 
   return (
-    <input
-      value={pickedDate}
-      type="date"
-      className="datePicker"
-      onChange={handleChange}
-      max={formattedDate}
-    />
+    <div className="datePickerDiv">
+      <input
+        value={pickedDate}
+        type="date"
+        onChange={handleChange}
+        max={formattedDate}
+        className="datePickerInput"
+      />
+    </div>
   );
 }
 

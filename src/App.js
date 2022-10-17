@@ -7,19 +7,17 @@ export function FetchApi({ apiKey, dateValue }) {
 
   useEffect(() => {
     if (dateValue === undefined || dateValue === null || dateValue === "") {
-      fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setResponseState(result);
+      fetch(getFetchRequestUri(apiKey))
+        .then(async (res) => {
+          const response = await res.json();
+          setResponseState(response);
         })
         .catch((error) =>
           console.log("Failed to make request to Nasa API:", error)
         );
     } else {
       console.log(`Date value found:${dateValue}`);
-      fetch(
-        `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${dateValue}`
-      )
+      fetch(getFetchRequestUri(apiKey, dateValue))
         .then((res) => res.json())
         .then((result) => {
           setResponseState(result);
@@ -45,7 +43,12 @@ export function FetchApi({ apiKey, dateValue }) {
             src={responseState.url}
           />
         ) : (
-          <img src={responseState.url} className="nasaImage" alt="img"></img>
+          <img
+            src={responseState.url}
+            className="nasaImage"
+            alt="img"
+            onClick={clickImage}
+          ></img>
         )}
 
         <h3 className="credit">
@@ -57,4 +60,16 @@ export function FetchApi({ apiKey, dateValue }) {
       </div>
     </div>
   );
+}
+
+function getFetchRequestUri(apiKey, dateValue) {
+  const urlParameters = dateValue
+    ? `api_key=${apiKey}&date=${dateValue}`
+    : `api_key=${apiKey}`;
+
+  return `https://api.nasa.gov/planetary/apod?${urlParameters}`;
+}
+
+function clickImage(responseState) {
+  window.open(responseState.target.src, '_blank')
 }
