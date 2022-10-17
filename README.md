@@ -10,4 +10,3 @@ Application also allows you to view any image on any date.
 - Saving images to device
 - Infinte scrolling 
 - Mobile friendly version
-- 
