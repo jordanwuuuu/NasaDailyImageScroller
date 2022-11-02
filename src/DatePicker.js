@@ -3,9 +3,7 @@ import "./index.css";
 
 export function DatePicker({ setDateValue }) {
   const dateToday = new Date().toLocaleDateString();
-  const formattedDate = rearrangeDateFormat(dateToday);
   let pickedDate;
-  console.log("formattedDate:", formattedDate);
   const handleChange = (event) => {
     console.log("> Change event:", event.target.value);
     pickedDate = event.target.value;
@@ -18,7 +16,7 @@ export function DatePicker({ setDateValue }) {
         value={pickedDate}
         type="date"
         onChange={handleChange}
-        max={formattedDate}
+        max={rearrangeDateFormat(dateToday)}
         className="datePickerInput"
       />
     </div>
