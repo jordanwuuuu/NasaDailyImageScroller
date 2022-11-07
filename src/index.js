@@ -27,7 +27,7 @@ root.render(
     <React.StrictMode>
       <Routes>
         <Route path="/" element={<NasaMediaObject />} />
-        <Route path="/saved" element={<BookmarkedPages />} />
+        <Route path="/saved" element={<BookmarkedPages apiKey={apiKey} />} />
       </Routes>
       {/* <NasaMediaObject /> */}
     </React.StrictMode>

@@ -1,13 +1,12 @@
+body {
+  background-color: rgb(250,250,250);
+}
+
 .datePickerDiv {
   text-align: center;
   border-style: solid;
 }
 
-/* .datePickerInput {
-} */
-body {
-  background-color: rgb(250,250,250);
-}
 .nasaDiv {
   background-color: white;
   margin: 5% 30% 3% 30%;
@@ -53,4 +52,8 @@ body {
 
 .date {
   color: #506ed1;
+}
+
+.icon {
+  font-size: 2rem;
 }

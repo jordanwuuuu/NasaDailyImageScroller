@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Bookmarker } from "./components/Bookmark";
 
 export function FetchApi({ apiKey, dateValue }) {
   const initialState = {};
   const [responseState, setResponseState] = useState(initialState);
-
+console.log('>> Fetch called')
   useEffect(() => {
     if (dateValue === undefined || dateValue === null || dateValue === "") {
       fetch(getFetchRequestUri(apiKey))
@@ -50,7 +51,7 @@ export function FetchApi({ apiKey, dateValue }) {
             onClick={clickImage}
           ></img>
         )}
-
+        <Bookmarker dateValue={dateValue} />
         <h3 className="credit">
           {responseState.copyright !== undefined
             ? `Copyright:${responseState.copyright}`
@@ -71,5 +72,5 @@ function getFetchRequestUri(apiKey, dateValue) {
 }
 
 function clickImage(responseState) {
-  window.open(responseState.target.src, '_blank')
+  window.open(responseState.target.src, "_blank");
 }
