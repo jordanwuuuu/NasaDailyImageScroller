@@ -36,6 +36,7 @@ export function GenerateImageTile({ apiKey, dateValue }) {
           )
         );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiKey, dateValue]);
 
   return (
