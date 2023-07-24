@@ -6,7 +6,13 @@ This app uses the NASA API to query for their daily image. More information here
 Application also allows you to view any image on any date.
 
 ## Features to be added
-- Bookmarking 
+- Bookmarking
+- Bookmarking access page
 - Saving images to device
-- Infinte scrolling 
+- Infinite scrolling 
 - Mobile friendly version
+
+## Bugs to fix
+- Why does it make double requests on initialisation 
+- 
+

@@ -2,19 +2,21 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Bookmarker } from "./components/Bookmark";
 
-export function FetchApi({ apiKey, dateValue }) {
+export function GenerateImageTile({ apiKey, dateValue }) {
   const initialState = {};
   const [responseState, setResponseState] = useState(initialState);
-console.log('>> Fetch called')
   useEffect(() => {
     if (dateValue === undefined || dateValue === null || dateValue === "") {
+      console.log("Unable to find date picker date. Using today`s date");
       fetch(getFetchRequestUri(apiKey))
-        .then(async (res) => {
-          const response = await res.json();
-          setResponseState(response);
-        })
+      .then(async (res) => {
+        const response = await res.json();
+        setResponseState(response);
+      })
         .catch((error) =>
-          console.log("Failed to make request to Nasa API:", error)
+          console.log("Failed to make request to Nasa API (No date):",
+            error,
+          )
         );
     } else {
       console.log(`Date value found:${dateValue}`);
@@ -22,9 +24,16 @@ console.log('>> Fetch called')
         .then((res) => res.json())
         .then((result) => {
           setResponseState(result);
+          console.log(`Date ${dateValue} with response:`, {
+            result,
+            responseState,
+          });
         })
         .catch((error) =>
-          console.log("Failed to make request to Nasa API:", error)
+          console.log(
+            `Failed to make request to Nasa API for date:${dateValue}:`,
+            error
+          )
         );
     }
   }, [apiKey, dateValue]);
@@ -34,7 +43,14 @@ console.log('>> Fetch called')
       <div className="imageInfo">
         <h1 className="title">{responseState.title}</h1>
         <h3 className="date"> {responseState.date}</h3>
-        {responseState.url && responseState.url.includes("youtube") ? (
+        {responseState.media_type === "image" ? (
+          <img
+            src={responseState.hdurl}
+            className="nasaImage"
+            alt="img"
+            onClick={clickImage}
+          ></img>
+        ) : (
           <iframe
             title="youtube"
             className="nasaVideo"
@@ -43,14 +59,8 @@ console.log('>> Fetch called')
             height="315"
             src={responseState.url}
           />
-        ) : (
-          <img
-            src={responseState.url}
-            className="nasaImage"
-            alt="img"
-            onClick={clickImage}
-          ></img>
         )}
+        
         <Bookmarker dateValue={dateValue} />
         <h3 className="credit">
           {responseState.copyright !== undefined
@@ -72,5 +82,9 @@ function getFetchRequestUri(apiKey, dateValue) {
 }
 
 function clickImage(responseState) {
+  console.log(">> response o click:", {
+    target: responseState.target,
+    responseState,
+  });
   window.open(responseState.target.src, "_blank");
 }

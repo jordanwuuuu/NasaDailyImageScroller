@@ -5,9 +5,9 @@ export function DatePicker({ setDateValue }) {
   const dateToday = new Date().toLocaleDateString();
   let pickedDate;
   const handleChange = (event) => {
-    console.log("> Change event:", event.target.value);
     pickedDate = event.target.value;
-    setDateValue(event.target.value);
+    console.log(`Date changed to ${pickedDate}`);
+    setDateValue(pickedDate); 
   };
 
   return (
