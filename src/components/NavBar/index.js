@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom";
+
 export function NavBar() {
-    return (
-        <h1>Nav bar</h1>
-    )
+  return (
+    <>
+      <nav>
+        <Link to="saved">Bookmarked</Link>
+        <br />
+        <Link to="/">Home</Link>
+      </nav>
+    </>
+  );
 }

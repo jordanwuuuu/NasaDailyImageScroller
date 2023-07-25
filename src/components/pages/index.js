@@ -1,5 +1,6 @@
 import "./index.css";
 import { GenerateImageTile } from "../../App";
+import { NavBar } from "../NavBar";
 
 export function BookmarkedPages({ apiKey }) {
   const getDates = () => {
@@ -10,6 +11,7 @@ export function BookmarkedPages({ apiKey }) {
   };
   return (
     <>
+      <NavBar />
       <h1>Bookmarked Entries</h1>
       {getDates()}
     </>

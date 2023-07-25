@@ -15,7 +15,7 @@ function NasaMediaObject() {
   const [dateValue, setDateValue] = useState("");
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar/>
       <DatePicker setDateValue={setDateValue} />
       <GenerateImageTile apiKey={apiKey} dateValue={dateValue} />
       <GenerateImageTile apiKey={apiKey} dateValue="1996-01-21" />
