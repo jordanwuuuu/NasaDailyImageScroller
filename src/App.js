@@ -75,6 +75,7 @@ export function GenerateImageTile({ apiKey, dateValue }) {
 }
 
 function getFetchRequestUri(apiKey, dateValue) {
+  // Date Value example: "1996-01-21"
   const urlParameters = dateValue
     ? `api_key=${apiKey}&date=${dateValue}`
     : `api_key=${apiKey}`;
