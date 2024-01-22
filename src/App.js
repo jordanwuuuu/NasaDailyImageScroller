@@ -19,7 +19,6 @@ export function GenerateImageTile({ apiKey, dateValue }) {
           )
         );
     } else {
-      console.log(`Date value found:${dateValue}`);
       fetch(getFetchRequestUri(apiKey, dateValue))
         .then((res) => res.json())
         .then((result) => {
@@ -84,7 +83,7 @@ function getFetchRequestUri(apiKey, dateValue) {
 }
 
 function clickImage(responseState) {
-  console.log(">> response o click:", {
+  console.log(">> response on click:", {
     target: responseState.target,
     responseState,
   });
