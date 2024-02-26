@@ -51,6 +51,8 @@ export function GenerateImageTile({ apiKey, dateValue }) {
             onClick={clickImage}
           ></img>
         ) : (
+          <div className="iframeDiv">
+
           <iframe
             title="youtube"
             className="nasaVideo"
@@ -58,7 +60,8 @@ export function GenerateImageTile({ apiKey, dateValue }) {
             width="420"
             height="315"
             src={responseState.url}
-          />
+            />
+            </div>
         )}
         
         <Bookmarker dateValue={dateValue} />
